@@ -1,0 +1,2 @@
+module Covid
+end
