@@ -6,6 +6,7 @@ gem 'hanami-model', '~> 1.3'
 
 gem 'pg'
 gem 'httparty'
+gem 'nokogiri'
 
 group :development do
   # Code reloading
