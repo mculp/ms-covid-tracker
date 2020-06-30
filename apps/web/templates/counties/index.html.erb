@@ -1,5 +1,5 @@
 <div class="container">
-  <table class="table">
+  <table class="table table-bordered table-hover">
     <thead>
       <tr>
         <td>County</td>
@@ -13,7 +13,11 @@
     <tbody>
     <% counties.each do |county| %>
       <tr>
-        <td><%= county.name %></td>
+        <td>
+          <a href="/counties/<%= county.name %>">
+            <%= county.name %>
+          </a>
+        </td>
         <td><%= county.county_updates[-1].cases %></td>
         <td><%= county.county_updates[-1].cases - county.county_updates[-2].cases %></td>
         <td><%= county.county_updates[-1].deaths %></td>

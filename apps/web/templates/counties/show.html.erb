@@ -1,0 +1,37 @@
+<div class="container">
+  <h1><%= county.name %></h1>
+  <table class="table table-bordered table-hover">
+    <thead>
+      <tr>
+        <td>Date</td>
+        <td>Total Cases</td>
+        <td>New Cases</td>
+        <td>Total Deaths</td>
+        <td>New Deaths</td>
+      </tr>
+    </thead>
+
+    <tbody>
+    <% county.county_updates.reverse!.each_with_index do |county_update, index| %>
+      <tr>
+        <td><%= county_update.date.to_date %></td>
+        <td><%= county_update.cases %></td>
+
+        <% if index + 1 < county.county_updates.count %>
+          <td><%= county_update.cases - county.county_updates[index + 1].cases %></td>
+        <% else %>
+          <td>N/A</td>
+        <% end %>
+
+        <td><%= county_update.deaths %></td>
+
+        <% if index + 1 < county.county_updates.count %>
+          <td><%= county_update.deaths - county.county_updates[index + 1].deaths %></td>
+        <% else %>
+          <td>N/A</td>
+        <% end %>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>

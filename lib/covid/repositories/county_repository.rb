@@ -4,7 +4,7 @@ class CountyRepository < Hanami::Repository
   end
 
   def find_by_name(name)
-    counties.where(name: name).first
+    counties.where(name: name).one
   end
 
   def find_or_create_by_name(name)
@@ -13,5 +13,12 @@ class CountyRepository < Hanami::Repository
 
   def all_with_latest_update
     aggregate(:county_updates).map_to(County)
+  end
+
+  def find_by_name_with_updates(name)
+    aggregate(:county_updates)
+      .where(counties[:name].qualified => name.capitalize)
+      .map_to(County)
+      .one
   end
 end
