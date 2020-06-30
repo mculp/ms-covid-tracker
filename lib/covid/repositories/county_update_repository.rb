@@ -1,7 +1,6 @@
 class CountyUpdateRepository < Hanami::Repository
-  def from_table_row_hash(hash)
-
-    create(attributes)
+  associations do
+    belongs_to :county
   end
 
   def find_latest_by_county_id(county_id)

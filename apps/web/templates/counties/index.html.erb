@@ -1,0 +1,25 @@
+<div class="container">
+  <table class="table">
+    <thead>
+      <tr>
+        <td>County</td>
+        <td>Total Cases</td>
+        <td>New Cases</td>
+        <td>Total Deaths</td>
+        <td>New Deaths</td>
+      </tr>
+    </thead>
+
+    <tbody>
+    <% counties.each do |county| %>
+      <tr>
+        <td><%= county.name %></td>
+        <td><%= county.county_updates[-1].cases %></td>
+        <td><%= county.county_updates[-1].cases - county.county_updates[-2].cases %></td>
+        <td><%= county.county_updates[-1].deaths %></td>
+        <td><%= county.county_updates[-1].deaths - county.county_updates[-2].deaths %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>
