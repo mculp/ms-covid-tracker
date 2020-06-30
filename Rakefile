@@ -7,3 +7,9 @@ begin
   task default: :spec
 rescue LoadError
 end
+
+# Rakefile
+desc "Scrape latest data"
+task scrape: :environment do
+
+end
