@@ -11,5 +11,11 @@ end
 # Rakefile
 desc "Scrape latest data"
 task scrape: :environment do
+  raw_html = if ENV['FILENAME']
+               File.read(ENV['FILENAME'])
+             else
+               HTTParty.get(Scrape::WEBSITE_URL)
+             end
 
+  Scrape.new(raw_html).call
 end

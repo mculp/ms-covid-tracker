@@ -1,9 +1,8 @@
 RSpec.describe CountyRepository, type: :repository do
   let(:repository) { CountyRepository.new }
 
-  before(:all) { CountyRepository.new.create(name: 'Rankin') }
-
   it "finds a county by name" do
+    repository.create(name: 'Rankin')
     expect(repository.find_by_name('Rankin')).to be
   end
 
