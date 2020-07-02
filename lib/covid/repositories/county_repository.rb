@@ -11,14 +11,21 @@ class CountyRepository < Hanami::Repository
     find_by_name(name) || create(name: name)
   end
 
-  def all_with_latest_update
-    aggregate(:county_updates).map_to(County)
+  def all_with_updates
+    aggregate(county_updates: :previous_update)
+      .node(:county_updates) { |county_updates| county_updates.order(county_updates_date_desc) }
+      .map_to(County)
   end
 
   def find_by_name_with_updates(name)
-    aggregate(:county_updates)
+    aggregate(county_updates: :previous_update)
       .where(counties[:name].qualified => name.capitalize)
+      .node(:county_updates) { |county_updates| county_updates.order(county_updates_date_desc) }
       .map_to(County)
       .one
+  end
+
+  def county_updates_date_desc
+    county_updates[:date].qualified.desc
   end
 end

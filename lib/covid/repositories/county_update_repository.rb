@@ -1,6 +1,7 @@
 class CountyUpdateRepository < Hanami::Repository
   associations do
     belongs_to :county
+    belongs_to :county_update, as: :previous_update
   end
 
   def find_all_by_county_id(county_id)
@@ -8,7 +9,7 @@ class CountyUpdateRepository < Hanami::Repository
   end
 
   def find_latest_by_county_id(county_id)
-    find_all_by_county_id.one
+    find_all_by_county_id(county_id).one
   end
 
   def find_previous_update_for(county_id:, date:)
@@ -32,5 +33,9 @@ class CountyUpdateRepository < Hanami::Repository
     attributes[:previous_update_id] = previous_update.id if previous_update
 
     create(attributes)
+  end
+
+  def find_with_previous_updates
+    aggregate(:previous_update).map_to(CountyUpdate)
   end
 end

@@ -18,10 +18,10 @@
             <%= county.name %>
           </a>
         </td>
-        <td><%= county.county_updates[-1].cases %></td>
-        <td><%= county.county_updates[-1].cases - county.county_updates[-2].cases %></td>
-        <td><%= county.county_updates[-1].deaths %></td>
-        <td><%= county.county_updates[-1].deaths - county.county_updates[-2].deaths %></td>
+        <td><%= county.county_updates.first.cases %></td>
+        <td><%= county.county_updates.first.cases - county.county_updates.first.previous_update.cases %></td>
+        <td><%= county.county_updates.first.deaths %></td>
+        <td><%= county.county_updates.first.deaths - county.county_updates.first.previous_update.deaths %></td>
       </tr>
     <% end %>
     </tbody>

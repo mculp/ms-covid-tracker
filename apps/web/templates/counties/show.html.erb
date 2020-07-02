@@ -12,21 +12,21 @@
     </thead>
 
     <tbody>
-    <% county.county_updates.reverse!.each_with_index do |county_update, index| %>
+    <% county.county_updates.each_with_index do |county_update, index| %>
       <tr>
         <td><%= county_update.date.to_date %></td>
         <td><%= county_update.cases %></td>
 
-        <% if index + 1 < county.county_updates.count %>
-          <td><%= county_update.cases - county.county_updates[index + 1].cases %></td>
+        <% if county_update.previous_update %>
+          <td><%= county_update.cases - county_update.previous_update.cases %></td>
         <% else %>
           <td>N/A</td>
         <% end %>
 
         <td><%= county_update.deaths %></td>
 
-        <% if index + 1 < county.county_updates.count %>
-          <td><%= county_update.deaths - county.county_updates[index + 1].deaths %></td>
+        <% if county_update.previous_update %>
+          <td><%= county_update.deaths - county_update.previous_update.deaths %></td>
         <% else %>
           <td>N/A</td>
         <% end %>
