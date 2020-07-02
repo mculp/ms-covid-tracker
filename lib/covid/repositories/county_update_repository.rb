@@ -9,7 +9,7 @@ class CountyUpdateRepository < Hanami::Repository
   end
 
   def find_latest_by_county_id(county_id)
-    find_all_by_county_id(county_id).one
+    find_all_by_county_id(county_id).limit(1).one
   end
 
   def find_previous_update_for(county_id:, date:)
