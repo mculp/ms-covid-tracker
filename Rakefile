@@ -19,3 +19,8 @@ task scrape: :environment do
 
   Scrape.new(raw_html).call
 end
+
+desc "Set previous update ids"
+task add_previous_updates: :environment do
+  AddPreviousUpdates.new.call
+end

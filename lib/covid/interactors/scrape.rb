@@ -10,25 +10,16 @@ class Scrape
 
   attr_reader :raw_html
 
+  expose :county_updates
+
   def initialize(raw_html)
     @raw_html = raw_html
   end
 
   def call
-    rows.each { |row| CountyUpdateRepository.new.create(attributes_for_row(row)) }
-  end
-
-  def attributes_for_row(row)
-    county = CountyRepository.new.find_or_create_by_name(row.keys.first)
-
-    {
-      date: date,
-      county_id: county.id,
-      cases: row[county.name][0],
-      deaths: row[county.name][1],
-      ltc_cases: row[county.name][2],
-      ltc_deaths: row[county.name][3]
-    }
+    @county_updates = rows.map do |row|
+      CountyUpdateRepository.new.create_from_row(row: row, date: date)
+    end
   end
 
   def date
