@@ -7,6 +7,8 @@ gem 'hanami-model', '~> 1.3'
 gem 'pg'
 gem 'httparty'
 gem 'nokogiri'
+gem 'roar'
+gem 'multi_json'
 
 group :development do
   # Code reloading
