@@ -16,8 +16,12 @@ class CountyRepository < Hanami::Repository
       .node(:county_updates) { |county_updates| county_updates.order(county_updates_date_desc) }
       .map_to(County)
       .to_a
+  end
+
+  def all_with_updates_sorted_by_new_cases
+    all_with_updates
       .sort_by {
-        |county| county.county_updates.first.cases - county.county_updates.first.previous_update.cases
+        |county| county.county_updates.first.cases - county.county_updates.first.previous_update&.cases
       }.reverse!
   end
 
