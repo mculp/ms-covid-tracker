@@ -24,10 +24,10 @@ class CountyUpdateRepository < Hanami::Repository
     attributes = {
       date: date,
       county_id: county.id,
-      cases: row[county.name][0],
-      deaths: row[county.name][1],
-      ltc_cases: row[county.name][2],
-      ltc_deaths: row[county.name][3]
+      cases: row[county.name][0].to_i,
+      deaths: row[county.name][1].to_i,
+      ltc_cases: row[county.name][2] || previous_update&.ltc_cases,
+      ltc_deaths: row[county.name][3] || previous_update&.ltc_deaths
     }
 
     attributes[:previous_update_id] = previous_update.id if previous_update

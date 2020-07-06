@@ -17,7 +17,7 @@ class Scrape
   end
 
   def call
-    @county_updates = rows.map do |row|
+    @county_updates = rows_without_ltc_data.map do |row|
       CountyUpdateRepository.new.create_from_row(row: row, date: date)
     end
   end
@@ -37,6 +37,13 @@ class Scrape
   def rows
     @rows ||= begin
       table.css('tr > td').map(&:text)[5..-6].each_slice(5).map { |slice| { slice.first => slice[1..] } }
+    end
+  end
+
+  # state did not provide LTC data on 7/5/2020
+  def rows_without_ltc_data
+    @rows ||= begin
+      table.css('tr > td').map(&:text)[3..-4].each_slice(3).map { |slice| { slice.first => slice[1..] } }
     end
   end
 end
