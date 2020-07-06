@@ -17,7 +17,7 @@ class Scrape
   end
 
   def call
-    @county_updates = rows_without_ltc_data.map do |row|
+    @county_updates = rows.map do |row|
       CountyUpdateRepository.new.create_from_row(row: row, date: date)
     end
   end
