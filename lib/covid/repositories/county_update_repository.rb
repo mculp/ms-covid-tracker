@@ -17,7 +17,7 @@ class CountyUpdateRepository < Hanami::Repository
   end
 
   def create_from_row(row:, date:)
-    county = CountyRepository.new.find_or_create_by_name(row.keys.first)
+    county = CountyRepository.new.find_by_name(row.keys.first)
 
     previous_update = find_latest_by_county_id(county.id)
 
