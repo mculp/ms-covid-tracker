@@ -22,7 +22,7 @@
         <td><%= county.county_updates.first.cases %></td>
         <td>
           <h6><%= county.county_updates.first.new_cases %></h6>
-          <span class="badge <%= badge_class(county.county_updates.first.new_cases_percent_change) -%>">
+          <span class="badge <%= badge_class(county.county_updates.first.new_cases_percent_change) %>">
             <%= county.county_updates.first.new_cases_percent_change %>%
           </span>
         </td>
