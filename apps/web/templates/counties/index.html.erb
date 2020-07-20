@@ -20,9 +20,9 @@
           </a>
         </td>
         <td><%= county.county_updates.first.cases %></td>
-        <td><%= county.county_updates.first.cases - county.county_updates.first.previous_update.cases %></td>
+        <td><%= county.county_updates.first.new_cases %></td>
         <td><%= county.county_updates.first.deaths %></td>
-        <td><%= county.county_updates.first.deaths - county.county_updates.first.previous_update.deaths %></td>
+        <td><%= county.county_updates.first.new_deaths %></td>
       </tr>
     <% end %>
     </tbody>

@@ -16,20 +16,9 @@
       <tr>
         <td><%= county_update.date.to_date %></td>
         <td><%= county_update.cases %></td>
-
-        <% if county_update.previous_update %>
-          <td><%= county_update.cases - county_update.previous_update.cases %></td>
-        <% else %>
-          <td>N/A</td>
-        <% end %>
-
+        <td><%= county_update.new_cases || 'N/A' %></td>
         <td><%= county_update.deaths %></td>
-
-        <% if county_update.previous_update %>
-          <td><%= county_update.deaths - county_update.previous_update.deaths %></td>
-        <% else %>
-          <td>N/A</td>
-        <% end %>
+        <td><%= county_update.new_deaths || 'N/A' %></td>
       </tr>
     <% end %>
     </tbody>

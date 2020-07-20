@@ -30,10 +30,10 @@ module Api
 
                   if county_update.previous_update
                     county_update_hash[:new] = {
-                      cases: county_update.cases - county_update.previous_update.cases,
-                      deaths: county_update.deaths - county_update.previous_update.deaths,
-                      ltc_cases: county_update.ltc_cases - county_update.previous_update.ltc_cases,
-                      ltc_deaths: county_update.ltc_deaths - county_update.previous_update.ltc_deaths
+                      cases: county_update.new_cases,
+                      deaths: county_update.new_deaths,
+                      ltc_cases: county_update.new_ltc_cases,
+                      ltc_deaths: county_update.new_ltc_deaths
                     }
                   end
 
