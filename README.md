@@ -8,4 +8,5 @@ The State of Mississippi provides a daily table with the latest counts of total 
 
 ## Author
 Matt Culpepper
+
 matt@culpepper.co
