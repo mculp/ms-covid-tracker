@@ -16,18 +16,18 @@
       <tr>
         <td>
           <a href="/counties/<%= county.name %>">
-            <%= county.name %>
+            <h6><%= county.name %></h6>
           </a>
         </td>
-        <td><%= county.county_updates.first.cases %></td>
+        <td><h6><%= county.county_updates.first.cases %><h6></td>
         <td>
           <h6><%= county.county_updates.first.new_cases %></h6>
           <span class="badge <%= badge_class(county.county_updates.first.new_cases_percent_change) %>">
             <%= county.county_updates.first.new_cases_percent_change %>%
           </span>
         </td>
-        <td><%= county.county_updates.first.deaths %></td>
-        <td><%= county.county_updates.first.new_deaths %></td>
+        <td><h6><%= county.county_updates.first.deaths %></h6></td>
+        <td><h6><%= county.county_updates.first.new_deaths %><h6></td>
       </tr>
     <% end %>
     </tbody>
