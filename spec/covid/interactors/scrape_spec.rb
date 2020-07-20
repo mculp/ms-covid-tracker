@@ -33,4 +33,9 @@ RSpec.describe Scrape, type: :interactor do
 
     expect(interactor.rows_without_ltc_data.first.values).to eq([["311", "18"]])
   end
+
+  it "checks for LTC data" do
+    interactor = Scrape.new(File.read('./spec/support/COVID/7-5/index.htm'))
+    expect(interactor.without_ltc_data?).to_not be
+  end
 end
