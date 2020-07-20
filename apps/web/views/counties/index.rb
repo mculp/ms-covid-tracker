@@ -9,9 +9,9 @@ module Web
         end
 
         def badge_class(percent)
-          if percent > 3
+          if percent >= 5
             'badge-danger'
-          elsif percent > 1
+          elsif percent >= 2
             'badge-warning'
           else
             'badge-info'
