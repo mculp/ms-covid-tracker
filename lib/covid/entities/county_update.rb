@@ -22,4 +22,10 @@ class CountyUpdate < Hanami::Entity
 
     ltc_deaths - previous_update.ltc_deaths
   end
+
+  def new_cases_percent_change
+    return unless previous_update
+
+    (new_cases.to_f / previous_update.cases.abs * 100).to_i
+  end
 end

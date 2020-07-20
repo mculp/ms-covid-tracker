@@ -1,6 +1,13 @@
 RSpec.describe Scrape, type: :interactor do
   let(:interactor) { Scrape.new(File.read('./spec/support/COVID/6-27/index.htm')) }
 
+  before(:each) {
+    interactor = Scrape.new(File.read('./spec/support/COVID/6-27/index.htm'))
+    interactor.counties.each do |county|
+      CountyRepository.new.create(name: county)
+    end
+  }
+
   it "succeeds" do
     result = interactor.call
     expect(result.successful?).to be(true)
@@ -31,11 +38,11 @@ RSpec.describe Scrape, type: :interactor do
   it "parses rows without LTC data" do
     interactor = Scrape.new(File.read('./spec/support/COVID/7-5/index.htm'))
 
-    expect(interactor.rows_without_ltc_data.first.values).to eq([["311", "18"]])
+    expect(interactor.rows.first.values).to eq([["311", "18"]])
   end
 
   it "checks for LTC data" do
     interactor = Scrape.new(File.read('./spec/support/COVID/7-5/index.htm'))
-    expect(interactor.without_ltc_data?).to_not be
+    expect(interactor.without_ltc_data?).to be
   end
 end
