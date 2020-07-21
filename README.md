@@ -1,33 +1,18 @@
-# Covid
+# Mississippi COVID Tracker
 
-Welcome to your new Hanami project!
+http://ms-covid-tracker.herokuapp.com/
 
-## Setup
+## Rationale
 
-How to run tests:
+The State of Mississippi provides a daily table with the latest counts of total COVID cases and deaths in each county. The table doesn't show counties' new cases or deaths. This project scrapes the table each day and compares to the previous day's table to provide new cases and deaths in each county. The tables are stored so there is also a historical view of the data.
 
-```
-% bundle exec rake
-```
+## API
 
-How to run the development console:
+All data can be accessed in JSON format.
 
-```
-% bundle exec hanami console
-```
+http://ms-covid-tracker.herokuapp.com/api/v1/counties
 
-How to run the development server:
+## Author
+Matt Culpepper
 
-```
-% bundle exec hanami server
-```
-
-How to prepare (create and migrate) DB for `development` and `test` environments:
-
-```
-% bundle exec hanami db prepare
-
-% HANAMI_ENV=test bundle exec hanami db prepare
-```
-
-Explore Hanami [guides](https://guides.hanamirb.org/), [API docs](http://docs.hanamirb.org/1.3.3/), or jump in [chat](http://chat.hanamirb.org) for help. Enjoy! 🌸
+matt@culpepper.co
