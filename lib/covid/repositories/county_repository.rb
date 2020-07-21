@@ -13,7 +13,7 @@ class CountyRepository < Hanami::Repository
 
   def all_with_updates
     aggregate(county_updates: :previous_update)
-      .node(:county_updates) { |county_updates| county_updates.order(county_updates_date_desc).limit(2) }
+      .node(:county_updates) { |county_updates| county_updates.order(county_updates_date_desc) }
       .map_to(County)
       .to_a
       .sort_by {
