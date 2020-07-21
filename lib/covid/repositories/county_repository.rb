@@ -4,7 +4,7 @@ class CountyRepository < Hanami::Repository
   end
 
   def find_by_name(name)
-    counties.where(name: name).one
+    counties.where(counties[:name].ilike("%?%", name)).one
   end
 
   def find_or_create_by_name(name)
