@@ -15,19 +15,19 @@
     <% counties.each do |county| %>
       <tr>
         <td>
-          <a href="/counties/<%= county.name %>" class="h6-no-bold">
-            <%= county.name %>
+          <a href="/counties/<%= county.county_name %>" class="h6-no-bold">
+            <%= county.county_name %>
           </a>
         </td>
-        <td class="h6-no-bold"><%= county.county_updates.first.cases %></td>
+        <td class="h6-no-bold"><%= county.cases %></td>
         <td>
-          <h6><%= county.county_updates.first.new_cases %></h6>
-          <span class="badge <%= badge_class(county.county_updates.first.new_cases_percent_change) %>">
-            <%= county.county_updates.first.new_cases_percent_change %>%
+          <h6><%= county.new_cases %></h6>
+          <span class="badge <%= badge_class(county.percent_change) %>">
+            <%= county.percent_change %>%
           </span>
         </td>
-        <td class="h6-no-bold"><%= county.county_updates.first.deaths %></td>
-        <td><h6><%= county.county_updates.first.new_deaths %><h6></td>
+        <td class="h6-no-bold"><%= county.deaths %></td>
+        <td><h6><%= county.new_deaths %><h6></td>
       </tr>
     <% end %>
     </tbody>

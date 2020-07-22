@@ -7,7 +7,7 @@ module Web
         expose :counties
 
         def call(params)
-          @counties = CountyRepository.new.all_with_updates
+          @counties = CountyWithLatestUpdateRepository.new.all
         end
       end
     end
