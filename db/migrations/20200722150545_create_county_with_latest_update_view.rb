@@ -34,6 +34,7 @@ Hanami::Model.migration do
         from latest_update
         inner join previous_update on latest_update.county_id = previous_update.county_id
         inner join counties on latest_update.county_id = counties.id
+        order by new_cases desc
       )
     SQL
   end
