@@ -3,8 +3,10 @@ class CountyRepository < Hanami::Repository
     has_many :county_updates
   end
 
-  def find_by_name(name)
-    counties.where(counties[:name].ilike("%?%", name)).one
+  def find_by_name(county_name)
+    counties
+      .where(counties[:name].func { string::replace(name, ' ', '') }.ilike(county_name.tr(' ', '')))
+      .one
   end
 
   def find_or_create_by_name(name)
