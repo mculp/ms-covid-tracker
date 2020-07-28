@@ -18,7 +18,13 @@ class Scrape
 
   def call
     @county_updates = rows.map do |row|
-      CountyUpdateRepository.new.create_from_row(row: row, date: date)
+      begin
+        CountyUpdateRepository.new.create_from_row(row: row, date: date)
+      rescue => e
+        Hanami.logger.info {
+          "Could not create record for #{row.keys.first} on #{date}: #{e.message}"
+        }
+      end
     end
   end
 

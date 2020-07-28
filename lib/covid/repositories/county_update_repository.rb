@@ -17,7 +17,8 @@ class CountyUpdateRepository < Hanami::Repository
   end
 
   def create_from_row(row:, date:)
-    county = CountyRepository.new.find_by_name(row.keys.first)
+    county_name = row.keys.first
+    county = CountyRepository.new.find_by_name(county_name)
 
     return unless county
 
@@ -26,10 +27,10 @@ class CountyUpdateRepository < Hanami::Repository
     attributes = {
       date: date,
       county_id: county.id,
-      cases: row[county.name][0].to_i,
-      deaths: row[county.name][1].to_i,
-      ltc_cases: row[county.name][2] || previous_update&.ltc_cases,
-      ltc_deaths: row[county.name][3] || previous_update&.ltc_deaths
+      cases: row[county_name][0].to_i,
+      deaths: row[county_name][1].to_i,
+      ltc_cases: row[county_name][2] || previous_update&.ltc_cases,
+      ltc_deaths: row[county_name][3] || previous_update&.ltc_deaths
     }
 
     attributes[:previous_update_id] = previous_update.id if previous_update
