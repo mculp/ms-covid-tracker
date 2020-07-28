@@ -20,7 +20,7 @@
           </a>
         </td>
         <td class="h6-no-bold"><%= county.cases %></td>
-        <td>
+        <td data-value="<%= county.new_cases %>">
           <h6><%= county.new_cases %></h6>
           <span class="badge <%= badge_class(county.percent_change) %>">
             <%= county.percent_change %>%
