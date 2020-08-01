@@ -30,7 +30,7 @@ class CountyRepository < Hanami::Repository
       }.reverse!
   end
 
-  def find_by_name_with_updates(name)
+  def find_by_name_with_updates(county_name)
     aggregate(county_updates: :previous_update)
       .where(counties[:name].func { string::replace(name, ' ', '') }.ilike(county_name.tr(' ', '')))
       .node(:county_updates) { |county_updates| county_updates.order(county_updates_date_desc) }
