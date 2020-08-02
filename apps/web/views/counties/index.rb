@@ -5,7 +5,7 @@ module Web
         include Web::View
 
         def updated
-          CountyUpdateRepository.new.find_latest_by_county_id(1).date.strftime("%B %d, %Y")
+          CountyUpdateRepository.new.find_latest_by_county_id(1).date.strftime("%B %-d, %Y")
         end
 
         def badge_class(percent)
